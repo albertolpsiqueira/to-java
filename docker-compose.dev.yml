@@ -1,0 +1,54 @@
+version: "3.3"
+
+services:
+  mongo:
+    image: mongo:latest
+    container_name: project_mongo_nest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+      MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    ports:
+      - "27027:27017"
+    volumes:
+      - projectmongonest_data:/data/db
+    networks:
+      - project_network_nest
+
+  server:
+    build: ./backend
+    container_name: project_server_nest
+    restart: always
+    ports:
+      - "3006:3000"
+    environment:
+      MONGO_URL: ${MONGO_URL}
+    depends_on:
+      mongo:
+        condition: service_healthy
+    networks:
+      - project_network_nest
+
+  client:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_URL: http://localhost:3006
+    container_name: project_client_nest
+    ports:
+      - "8006:5173"
+    depends_on:
+      - server
+    networks:
+      - project_network_nest
+volumes:
+  projectmongonest_data:
+
+networks:
+  project_network_nest:
+    driver: bridge
