@@ -3,7 +3,8 @@ version: "3.3"
 services:
   mongo:
     image: mongo:latest
-    container_name: project_mongo_nest
+    #container_name: project_mongo_nest
+    container_name: project_mongo_java
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
@@ -21,11 +22,14 @@ services:
       - project_network_nest
 
   server:
-    build: ./backend
-    container_name: project_server_nest
+    #build: ./backend
+    build: ./backend-java
+    #container_name: project_server_nest
+    container_name: project_server_java
     restart: always
     ports:
-      - "3006:3000"
+      #- "3006:3000"
+      - "3006:8080"
     environment:
       MONGO_URL: ${MONGO_URL}
     depends_on:
@@ -33,13 +37,15 @@ services:
         condition: service_healthy
     networks:
       - project_network_nest
+    
 
   client:
     build:
       context: ./frontend
       args:
         VITE_API_URL: http://localhost:3006
-    container_name: project_client_nest
+    #container_name: project_client_nest
+    container_name: project_client_java
     ports:
       - "8006:5173"
     depends_on:

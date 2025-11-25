@@ -15,7 +15,8 @@ import { baseURL } from "../api/user";
 import { useNavigate } from "react-router-dom";
 
 interface User {
-  _id: string;
+  //_id: string;
+  id: string;
   name: string;
   email: string;
 }
@@ -97,13 +98,22 @@ const Home: React.FC = () => {
               <Typography color="text.secondary">{user.email}</Typography>
             </Box>
             <Box>
-              <IconButton
+              {/* <IconButton
                 color="primary"
                 onClick={() => navigate(`/edit/${user._id}`)}
               >
                 <EditIcon />
+              </IconButton> */}
+               <IconButton
+                color="primary"
+                onClick={() => navigate(`/edit/${user.id}`)}
+              >
+                <EditIcon />
               </IconButton>
-              <IconButton color="error" onClick={() => handleDelete(user._id)}>
+              {/* <IconButton color="error" onClick={() => handleDelete(user._id)}>
+                <DeleteIcon />
+              </IconButton> */}
+              <IconButton color="error" onClick={() => handleDelete(user.id)}>
                 <DeleteIcon />
               </IconButton>
             </Box>

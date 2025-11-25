@@ -1,5 +1,6 @@
 CLIENT_DIR=frontend
-SERVER_DIR=backend
+#SERVER_DIR=backend
+SERVER_DIR=backend-java
 
 .PHONY: all transpile transpile-client  transpile-server  docker-build-dev up-dev stop-dev 
 
@@ -11,15 +12,18 @@ transpile-client:
 	npm install && \
 	npm run build
 
-transpile-server:
-	cd $(SERVER_DIR) && \
-	 [ -s "$$NVM_DIR/nvm.sh" ] && . "$$NVM_DIR/nvm.sh" && nvm install && nvm use || true && \
-	npm install && \
-	npm run build
+# transpile-server:
+# 	cd $(SERVER_DIR) && \
+# 	 [ -s "$$NVM_DIR/nvm.sh" ] && . "$$NVM_DIR/nvm.sh" && nvm install && nvm use || true && \
+# 	npm install && \
+# 	npm run build
+
+package-server:
+	./mvnw clean package
 
 transpile: transpile-client transpile-server 
 # ...
-docker-build-dev: transpile
+docker-build-dev: #transpile
 	docker-compose -f docker-compose.dev.yml build
 
 up-dev: docker-build-dev
