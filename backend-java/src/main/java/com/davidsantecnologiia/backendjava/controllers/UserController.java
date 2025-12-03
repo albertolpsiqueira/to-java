@@ -1,7 +1,10 @@
 package com.davidsantecnologiia.backendjava.controllers;
 
+import com.davidsantecnologiia.backendjava.dtos.UserRequestDTO;
+import com.davidsantecnologiia.backendjava.dtos.UserResponseDTO;
 import com.davidsantecnologiia.backendjava.entities.UserEntity;
 import com.davidsantecnologiia.backendjava.services.UserService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,24 +22,28 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<UserEntity> create(@RequestBody UserEntity userEntity){
-        return ResponseEntity.ok(userService.create(userEntity));
+    public ResponseEntity<UserResponseDTO> create(@RequestBody UserRequestDTO userRequestDTO){
+        UserResponseDTO userResponseDTO = userService.create(userRequestDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(userResponseDTO);
     }
 
     @GetMapping
-    public ResponseEntity<List<UserEntity>> findAll(){
-        return ResponseEntity.ok(userService.findAll());
+    public ResponseEntity<List<UserResponseDTO>> findAll(){
+        List<UserResponseDTO> userResponseDTOList = userService.findAll();
+        return ResponseEntity.ok(userResponseDTOList);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserEntity> findOne(@PathVariable String id){
-        return ResponseEntity.ok(userService.findOne(id));
+    public ResponseEntity<UserResponseDTO> findOne(@PathVariable String id){
+        UserResponseDTO userResponseDTO = userService.findOne(id);
+        return ResponseEntity.ok(userResponseDTO);
     }
 
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserEntity> update(@RequestBody UserEntity userEntity, @PathVariable String id){
-        return ResponseEntity.ok(userService.update(userEntity, id));
+    public ResponseEntity<UserResponseDTO> update(@RequestBody UserRequestDTO userRequestDTO, @PathVariable String id){
+        UserResponseDTO userResponseDTO = userService.update(userRequestDTO, id);
+        return ResponseEntity.ok(userResponseDTO);
     }
 
     @DeleteMapping("/{id}")
