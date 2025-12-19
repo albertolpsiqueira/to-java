@@ -1,9 +1,8 @@
-package com.davidsantecnologiia.backendjava.controllers;
+package com.davidsantecnologia.backendjava.controllers;
 
-import com.davidsantecnologiia.backendjava.dtos.UserRequestDTO;
-import com.davidsantecnologiia.backendjava.dtos.UserResponseDTO;
-import com.davidsantecnologiia.backendjava.entities.UserEntity;
-import com.davidsantecnologiia.backendjava.services.UserService;
+import com.davidsantecnologia.backendjava.dtos.UserRequestDTO;
+import com.davidsantecnologia.backendjava.dtos.UserResponseDTO;
+import com.davidsantecnologia.backendjava.services.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

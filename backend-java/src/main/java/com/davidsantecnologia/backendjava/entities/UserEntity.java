@@ -1,4 +1,4 @@
-package com.davidsantecnologiia.backendjava.entities;
+package com.davidsantecnologia.backendjava.entities;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;

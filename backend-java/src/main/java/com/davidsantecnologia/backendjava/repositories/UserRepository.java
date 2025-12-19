@@ -1,7 +1,7 @@
-package com.davidsantecnologiia.backendjava.repositories;
+package com.davidsantecnologia.backendjava.repositories;
 
 
-import com.davidsantecnologiia.backendjava.entities.UserEntity;
+import com.davidsantecnologia.backendjava.entities.UserEntity;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

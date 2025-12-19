@@ -1,4 +1,4 @@
-package com.davidsantecnologiia.backendjava;
+package com.davidsantecnologia.backendjava;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

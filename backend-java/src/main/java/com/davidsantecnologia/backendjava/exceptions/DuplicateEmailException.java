@@ -1,4 +1,4 @@
-package com.davidsantecnologiia.backendjava.exceptions;
+package com.davidsantecnologia.backendjava.exceptions;
 
 public class DuplicateEmailException extends RuntimeException {
 

@@ -1,15 +1,14 @@
-package com.davidsantecnologiia.backendjava.services;
+package com.davidsantecnologia.backendjava.services;
 
-import com.davidsantecnologiia.backendjava.dtos.UserRequestDTO;
-import com.davidsantecnologiia.backendjava.dtos.UserResponseDTO;
-import com.davidsantecnologiia.backendjava.entities.UserEntity;
-import com.davidsantecnologiia.backendjava.exceptions.DuplicateEmailException;
-import com.davidsantecnologiia.backendjava.repositories.UserRepository;
+import com.davidsantecnologia.backendjava.dtos.UserRequestDTO;
+import com.davidsantecnologia.backendjava.dtos.UserResponseDTO;
+import com.davidsantecnologia.backendjava.entities.UserEntity;
+import com.davidsantecnologia.backendjava.exceptions.DuplicateEmailException;
+import com.davidsantecnologia.backendjava.repositories.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
